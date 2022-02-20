@@ -1,0 +1,16 @@
+{
+  "name": "dolmetsch-thaiper",
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "start": "nuxt start"
+  },
+  "dependencies": {
+    "nuxt": "^2.15.8"
+  },
+  "devDependencies": {
+    "stylus": "^0.56.0",
+    "stylus-loader": "^4.3.3"
+  }
+}

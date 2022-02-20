@@ -1,0 +1,30 @@
+[
+  {
+    "name": "keyboards-english",
+    "path": "/keyboards/english",
+    "component": "/Users/gbezyuk/w/dl/projects/thaiper/pages/keyboards/english.vue",
+    "chunkName": "pages/keyboards/english",
+    "_name": "_a4e95c94"
+  },
+  {
+    "name": "keyboards-russian",
+    "path": "/keyboards/russian",
+    "component": "/Users/gbezyuk/w/dl/projects/thaiper/pages/keyboards/russian.vue",
+    "chunkName": "pages/keyboards/russian",
+    "_name": "_d1b5854e"
+  },
+  {
+    "name": "keyboards-thai",
+    "path": "/keyboards/thai",
+    "component": "/Users/gbezyuk/w/dl/projects/thaiper/pages/keyboards/thai.vue",
+    "chunkName": "pages/keyboards/thai",
+    "_name": "_1b0df774"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/gbezyuk/w/dl/projects/thaiper/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_fa21a68a"
+  }
+]

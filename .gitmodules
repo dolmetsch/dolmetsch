@@ -1,0 +1,9 @@
+[submodule "components/dl-keyboard"]
+	path = components/dl-keyboard
+	url = git@github.com:dolmetsch/components-dl-keyboard.git
+[submodule "assets/langpacks/russian"]
+	path = assets/langpacks/russian
+	url = git@github.com:dolmetsch/langpacks-russian.git
+[submodule "assets/langpacks/thai"]
+	path = assets/langpacks/thai
+	url = git@github.com:dolmetsch/langpacks-thai.git
