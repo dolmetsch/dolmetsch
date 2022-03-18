@@ -7,3 +7,15 @@
 [submodule "assets/langpacks/thai"]
 	path = assets/langpacks/thai
 	url = git@github.com:dolmetsch/langpacks-thai.git
+[submodule "assets/langpacks/hebrew"]
+	path = assets/langpacks/hebrew
+	url = git@github.com:dolmetsch/langpacks-hebrew
+[submodule "assets/georgian"]
+	path = assets/langpacks/georgian
+	url = git@github.com:dolmetsch/langpacks-georgian
+[submodule "assets/armenian"]
+	path = assets/langpacks/armenian
+	url = git@github.com:dolmetsch/langpacks-armenian
+[submodule "assets/greek"]
+	path = assets/langpacks/greek
+	url = git@github.com:dolmetsch/langpacks-greek

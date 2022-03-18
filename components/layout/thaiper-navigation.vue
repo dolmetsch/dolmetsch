@@ -6,6 +6,10 @@
         <nuxt-link to="/keyboards/english" exact>English</nuxt-link>
         <nuxt-link to="/keyboards/russian" exact>Russian</nuxt-link>
         <nuxt-link to="/keyboards/thai" exact>Thai</nuxt-link>
+        <nuxt-link to="/keyboards/hebrew" exact>Hebrew</nuxt-link>
+        <nuxt-link to="/keyboards/georgian" exact>Georgian</nuxt-link>
+        <nuxt-link to="/keyboards/armenian" exact>Armenian</nuxt-link>
+        <nuxt-link to="/keyboards/greek" exact>Greek</nuxt-link>
     </span>
 </nav>
 </template>
