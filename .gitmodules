@@ -19,3 +19,18 @@
 [submodule "assets/greek"]
 	path = assets/langpacks/greek
 	url = git@github.com:dolmetsch/langpacks-greek
+[submodule "assets/langpacks/hindi"]
+	path = assets/langpacks/hindi
+	url = git@github.com:dolmetsch/langpacks-hindi
+[submodule "assets/langpacks/sinhala"]
+	path = assets/langpacks/sinhala
+	url = git@github.com:dolmetsch/langpacks-sinhala
+[submodule "assets/langpacks/tamil"]
+	path = assets/langpacks/tamil
+	url = git@github.com:dolmetsch/langpacks-tamil
+[submodule "assets/langpacks/lao"]
+	path = assets/langpacks/lao
+	url = git@github.com:dolmetsch/langpacks-lao
+[submodule "assets/langpacks/khmer"]
+	path = assets/langpacks/khmer
+	url = git@github.com:dolmetsch/langpacks-khmer
