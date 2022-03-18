@@ -1,5 +1,8 @@
 <template>
-    <dl-keyboard :map="layout"/>
+<div>
+    <button @click="coursive = !coursive">switch to {{ coursive ? 'print' : 'coursive' }} letters</button>
+    <dl-keyboard :map="layout" class="keyboard" :class="{ coursive: coursive }" />
+</div>
 </template>
 
 <script>
@@ -10,6 +13,11 @@ export default {
     components: {
         DlKeyboard
     },
+    data () {
+        return {
+            coursive: false,
+        }
+    },
     computed: {
         layout () {
             return layout
@@ -17,3 +25,18 @@ export default {
     }
 }
 </script>
+
+<style lang="stylus" scoped>
+@font-face {
+  font-family: "Motek";
+  src: url("~assets/langpacks/hebrew/fonts/Motek.woff") format("woff");
+}
+
+button
+    position absolute
+    left 1em
+    top 1em
+
+.keyboard.coursive
+    font-family Motek
+</style>

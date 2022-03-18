@@ -1,7 +1,7 @@
 <template>
 <div class="layout">
     <header>
-        <thaiper-navigation/>
+        <!-- <thaiper-navigation/> -->
     </header>
     <div class="content">
         <nuxt/>
