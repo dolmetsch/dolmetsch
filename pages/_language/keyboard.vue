@@ -1,7 +1,8 @@
 <template>
 <div>
     <button v-if="hasCoursive" @click="coursive = !coursive">switch to {{ coursive ? 'print' : 'coursive' }} letters</button>
-    <dl-keyboard :map="layout" class="keyboard" :class="{ [language]: true, coursive }"/>
+    <dl-keyboard :map="layout" class="keyboard" :class="{ [language]: true, coursive }" @keyPressed="handleKeyPressed"/>
+    <audio ref="letterAudio"></audio>
 </div>
 </template>
 
@@ -140,6 +141,13 @@ export default {
         },
         layout () {
             return layouts[this.language] || degenerateLayout
+        }
+    },
+    methods: {
+        handleKeyPressed (letter) {
+            this.$refs.letterAudio.pause()
+            this.$refs.letterAudio.src = `/langpacks/${this.language}/audio/${letter}.mp3`
+            this.$refs.letterAudio.play()
         }
     }
 }
