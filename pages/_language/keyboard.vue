@@ -146,8 +146,13 @@ export default {
     methods: {
         handleKeyPressed (letter) {
             this.$refs.letterAudio.pause()
-            this.$refs.letterAudio.src = `/langpacks/${this.language}/audio/${letter}.mp3`
-            this.$refs.letterAudio.play()
+            this.$refs.letterAudio.src =
+                this.language === 'hebrew' ?
+                    `/langpacks/hebrew/audio/${letter}.mp3`
+                    : this.language === 'thai' ?
+                        `/langpacks/thai/audio/characters/${letter}.mp3`
+                        : ''
+            this.$refs.letterAudio.src && this.$refs.letterAudio.play()
         }
     }
 }
