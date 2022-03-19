@@ -1,12 +1,9 @@
 <template>
 <dl>
+    <audio ref="letterAudio"></audio>
     <template v-for="(v, k) in words">
-        <dt>
-            <strong>{{ k }}</strong>
-            {{ v }}
-
-        </dt>
-        <dd><audio :src="`/langpacks/hebrew/audio/${k}.mp3`" controls></audio></dd>
+        <dt @click="playWord(k)">{{ k }}</dt>
+        <dd>{{ v }}</dd>
     </template>
 </dl>
 </template>
@@ -19,10 +16,20 @@ export default {
         words () {
             return words
         },
+    },
+    methods: {
+        playWord (w) {
+            this.$refs.letterAudio.pause()
+            this.$refs.letterAudio.src = `/langpacks/hebrew/audio/${w}.mp3`
+            this.$refs.letterAudio.play()
+        }
     }
 }
 
 </script>
 
 <style lang="stylus" scoped>
+dt
+    font-size 3em
+    cursor pointer
 </style>
