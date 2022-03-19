@@ -19,6 +19,8 @@ export default {
     },
     methods: {
         playWord (w) {
+            const cleanFileName = fn => fn.replace('?', '')
+            w = cleanFileName(w)
             this.$refs.letterAudio.pause()
             this.$refs.letterAudio.src = `/langpacks/hebrew/audio/${w}.mp3`
             this.$refs.letterAudio.play()
