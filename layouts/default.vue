@@ -40,6 +40,10 @@ html[data-theme='thai']
 html[data-theme='georgian']
     --color-primary-foreground #200
 
+html[data-theme='armenian']
+    --color-primary-foreground #0033a0
+    --color-primary-accent #f2a800 //#d90012
+
 html[data-theme='hebrew']
     --color-primary-foreground #0038b8
 

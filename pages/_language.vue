@@ -25,6 +25,7 @@ export default {
                 'hebrew',
                 'thai',
                 'georgian',
+                'armenian',
             ].includes(this.language)
         }
     },

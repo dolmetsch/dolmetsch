@@ -1,6 +1,7 @@
 <template>
 <div class="word-list">
     <div class="toolbar">
+        <button class="audio-mode" @click="cycleAudioMode">audio : {{ audioMode }}</button>
         <div class="stats">
             <span class="filtered" title="filtered">{{ filteredCount }}</span>
             /<span class="total" title="total">{{ totalCount }}</span>
@@ -58,10 +59,25 @@ const georgianWords = Object.keys(georgianWordsDict).reduce(
     }, []
 )//.sort(originalComparator)
 
+
+import armenianWordsDict from '~/assets/langpacks/armenian/words.json'
+import armenianAudioList from '~/assets/langpacks/armenian/audio/words.json'
+
+const armenianWords = Object.keys(armenianWordsDict).reduce(
+    (acc, original) => {
+        const translation = armenianWordsDict[original]
+        const hasAudio = armenianAudioList.includes(cleanFileName(original))
+        acc.push({ original, translation, hasAudio })
+        return acc
+    }, []
+)//.sort(originalComparator)
+
+
 export default {
     data () {
         return {
-            searchToken: ''
+            searchToken: '',
+            audioMode: 'any',
         }
     },
     computed: {
@@ -76,18 +92,29 @@ export default {
                     return thaiWords
                 case 'georgian':
                     return georgianWords
+                case 'armenian':
+                    return armenianWords
                 default:
                     return []
             }
         },
         words () {
+            let ws
             if (!this.searchToken) {
-                return this.allWords
+                ws = this.allWords
             } else {
-                return this.allWords.filter(w =>
+                ws = this.allWords.filter(w =>
                     w.original.includes(this.searchToken) ||
                     w.translation.includes(this.searchToken)
                 )
+            }
+            switch (this.audioMode) {
+                case 'set':
+                    return ws.filter(w => w.hasAudio)
+                case 'not set':
+                    return ws.filter(w => !w.hasAudio)
+                default:
+                    return ws
             }
         },
         totalCount () {
@@ -98,6 +125,15 @@ export default {
         },
     },
     methods: {
+        cycleAudioMode () {
+            if (this.audioMode === 'any') {
+                this.audioMode = 'set'
+            } else if (this.audioMode === 'set') {
+                this.audioMode = 'not set'
+            } else {
+                this.audioMode = 'any'
+            }
+        },
         playWord (w) {
             if (!w.hasAudio) {
                 return
@@ -105,7 +141,7 @@ export default {
             this.$refs.letterAudio.pause()
             if (this.language === 'hebrew' || this.language === 'georgian') {
                 this.$refs.letterAudio.src = `/langpacks/${this.language}/audio/${cleanFileName(w.original)}.mp3`
-            } else if (this.language === 'thai') {
+            } else if (this.language === 'thai' || this.language === 'armenian') {
                 this.$refs.letterAudio.src = `/langpacks/${this.language}/audio/words/${cleanFileName(w.original)}.mp3`
             }
             this.$refs.letterAudio.play()
@@ -131,6 +167,9 @@ export default {
         width 100%
         z-index 1
         border-bottom 1px solid rgba(0, 0, 0, 0.1)
+        > .audio-mode
+            margin-right 2em
+            cursor pointer
         > .stats
             margin-right 1em
         > .search-box

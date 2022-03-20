@@ -151,7 +151,9 @@ export default {
                     `/langpacks/${this.language}/audio/${letter}.mp3`
                     : this.language === 'thai' ?
                         `/langpacks/thai/audio/characters/${letter}.mp3`
-                        : ''
+                        : this.language === 'armenian' ?
+                            `/langpacks/armenian/audio/letters/${letter}_1.mp3`
+                            : ''
             this.$refs.letterAudio.src && this.$refs.letterAudio.play()
         }
     }
