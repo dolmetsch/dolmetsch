@@ -13,24 +13,24 @@ export default {
     computed: {
         languages () {
             return [
-                'english',
+                // 'english',
 
-                'russian',
+                // 'russian',
 
                 'hebrew',
 
                 'georgian',
                 'armenian',
 
-                'greek',
+                // 'greek',
 
                 'thai',
-                'khmer',
-                'lao',
+                // 'khmer',
+                // 'lao',
 
-                'hindi',
-                'tamil',
-                'sinhala',
+                // 'hindi',
+                // 'tamil',
+                // 'sinhala',
             ]
         }
     }
