@@ -147,8 +147,8 @@ export default {
         handleKeyPressed (letter) {
             this.$refs.letterAudio.pause()
             this.$refs.letterAudio.src =
-                this.language === 'hebrew' ?
-                    `/langpacks/hebrew/audio/${letter}.mp3`
+                this.language === 'hebrew' || this.language === 'georgian' ?
+                    `/langpacks/${this.language}/audio/${letter}.mp3`
                     : this.language === 'thai' ?
                         `/langpacks/thai/audio/characters/${letter}.mp3`
                         : ''

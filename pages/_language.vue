@@ -24,6 +24,7 @@ export default {
             return [
                 'hebrew',
                 'thai',
+                'georgian',
             ].includes(this.language)
         }
     },

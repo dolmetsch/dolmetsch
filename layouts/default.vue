@@ -37,6 +37,9 @@ html, body, #__nuxt, #__layout
 html[data-theme='thai']
     --color-primary-foreground #370e62
 
+html[data-theme='georgian']
+    --color-primary-foreground #200
+
 html[data-theme='hebrew']
     --color-primary-foreground #0038b8
 

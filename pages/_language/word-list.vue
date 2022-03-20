@@ -22,6 +22,7 @@ import allHebrewWords from '~/assets/langpacks/hebrew/hebrew2english.json'
 import hebrewAudioList from '~/assets/langpacks/hebrew/audio-list.json'
 
 const cleanFileName = fn => fn.replace('?', '')
+const originalComparator = (a, b) => a.original === b.original ? 0 : a.original > b.original ? 1 : - 1
 
 const hebrewWords = Object.keys(allHebrewWords).reduce(
     (acc, original) => {
@@ -30,7 +31,7 @@ const hebrewWords = Object.keys(allHebrewWords).reduce(
         acc.push({ original, translation, hasAudio })
         return acc
     }, []
-)// .sort((a, b) => a.original === b.original ? 0 : a.original > b.original ? 1 : - 1)
+)//.sort(originalComparator)
 
 
 import mostFrequentThaiWords from '~/assets/langpacks/thai/words/most_frequent.json'
@@ -43,6 +44,19 @@ const thaiWords = mostFrequentThaiWords.map(w => ({
     translation: thai2english[w] || '',
     hasAudio: thaiAudioList.includes(cleanFileName(w))
 }))
+
+
+import georgianWordsDict from '~/assets/langpacks/georgian/words.json'
+import georgianAudioList from '~/assets/langpacks/georgian/audio.json'
+
+const georgianWords = Object.keys(georgianWordsDict).reduce(
+    (acc, original) => {
+        const translation = georgianWordsDict[original]
+        const hasAudio = georgianAudioList.includes(cleanFileName(original))
+        acc.push({ original, translation, hasAudio })
+        return acc
+    }, []
+)//.sort(originalComparator)
 
 export default {
     data () {
@@ -60,6 +74,8 @@ export default {
                     return hebrewWords
                 case 'thai':
                     return thaiWords
+                case 'georgian':
+                    return georgianWords
                 default:
                     return []
             }
@@ -87,7 +103,7 @@ export default {
                 return
             }
             this.$refs.letterAudio.pause()
-            if (this.language === 'hebrew') {
+            if (this.language === 'hebrew' || this.language === 'georgian') {
                 this.$refs.letterAudio.src = `/langpacks/${this.language}/audio/${cleanFileName(w.original)}.mp3`
             } else if (this.language === 'thai') {
                 this.$refs.letterAudio.src = `/langpacks/${this.language}/audio/words/${cleanFileName(w.original)}.mp3`
