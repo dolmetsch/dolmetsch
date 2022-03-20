@@ -1,6 +1,7 @@
 <template>
 <div class="word-list">
     <div class="toolbar">
+        <button class="coursive-mode" v-if="hasCoursive" @click="coursive = !coursive">switch to {{ coursive ? 'print' : 'coursive' }} letters</button>
         <button class="audio-mode" @click="cycleAudioMode">audio : {{ audioMode }}</button>
         <div class="stats">
             <span class="filtered" title="filtered">{{ filteredCount }}</span>
@@ -8,7 +9,7 @@
         </div>
         <input class="search-box" v-model="searchToken" placeholder="filter/search"/>
     </div>
-    <ul>
+    <ul :class="{ coursive }">
         <audio ref="letterAudio"></audio>
         <li v-for="w in words" :class="{ 'has-audio': w.hasAudio }" @click="playWord(w)">
             <strong>{{ w.original }}</strong>
@@ -72,17 +73,24 @@ const armenianWords = Object.keys(armenianWordsDict).reduce(
     }, []
 )//.sort(originalComparator)
 
+const hasCoursive = {
+    hebrew: true,
+}
 
 export default {
     data () {
         return {
             searchToken: '',
             audioMode: 'any',
+            coursive: false,
         }
     },
     computed: {
         language () {
             return this.$route.params.language
+        },
+        hasCoursive () {
+            return !!hasCoursive[this.language]
         },
         allWords () {
             switch (this.language) {
@@ -152,8 +160,14 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@font-face {
+  font-family: "Motek";
+  src: url("~assets/langpacks/hebrew/fonts/Motek.woff") format("woff");
+}
+
 .word-list
     padding 3em 1em
+
     > .toolbar
         position fixed
         top 0
@@ -167,7 +181,8 @@ export default {
         width 100%
         z-index 1
         border-bottom 1px solid rgba(0, 0, 0, 0.1)
-        > .audio-mode
+        > .audio-mode,
+        > .coursive-mode
             margin-right 2em
             cursor pointer
         > .stats
@@ -199,4 +214,9 @@ export default {
             &.has-audio
                 cursor pointer
                 border-bottom-width 5px
+
+        &.coursive
+            > li
+                > strong
+                    font-family Motek
 </style>
