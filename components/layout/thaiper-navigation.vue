@@ -38,6 +38,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@require '~/assets/styles/mixins.styl'
+
 .navigation
     display flex
     flex-direction row
@@ -49,6 +51,9 @@ export default {
 
     a
         display inline-block
-        margin-right .5em
+        padding 0 .25em
         text-transform capitalize
+
+        &.active
+            inverse-accent-colors()
 </style>

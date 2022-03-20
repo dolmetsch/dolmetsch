@@ -31,7 +31,14 @@ html, body, #__nuxt, #__layout
 :root
   --font-primary Inter, Roboto, Arial, Tahoma, sans-serif
   --color-primary-foreground black
+  --color-primary-accent gold
   --color-primary-background white
+
+html[data-theme='thai']
+    --color-primary-foreground #370e62
+
+html[data-theme='hebrew']
+    --color-primary-foreground #0038b8
 
 *, a
     box-sizing border-box

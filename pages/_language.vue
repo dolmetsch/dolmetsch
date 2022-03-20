@@ -14,6 +14,9 @@
 <script>
 export default {
     computed: {
+        language () {
+            return this.$route.params.language
+        },
         hasKeyboard () {
             return true
         },
@@ -21,8 +24,11 @@ export default {
             return [
                 'hebrew',
                 'thai',
-            ].includes(this.$route.params.language)
+            ].includes(this.language)
         }
+    },
+    mounted () {
+        document.documentElement.setAttribute('data-theme', this.language)
     }
 }
 </script>
@@ -36,19 +42,20 @@ export default {
         left 0
         top 0
         inverse-colors()
-        padding .5em
         z-index 2
+        padding .5em
 
     h1
         display inline-block
         text-transform capitalize
         font-weight bold
         line-height 2em
-        margin-right 1em
     nav
         display inline-block
         > a
             display inline-block
-            margin-right .5em
+            padding .5em .25em
             text-decoration underline
+            &.active
+                inverse-accent-colors()
 </style>
