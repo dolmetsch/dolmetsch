@@ -18,7 +18,10 @@ export default {
             return true
         },
         hasWordList () {
-            return this.$route.params.language === 'hebrew'
+            return [
+                'hebrew',
+                'thai',
+            ].includes(this.$route.params.language)
         }
     }
 }

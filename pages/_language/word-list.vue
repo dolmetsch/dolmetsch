@@ -9,19 +9,40 @@
     </div>
     <ul>
         <audio ref="letterAudio"></audio>
-        <li v-for="(v, k) in words" :class="{ 'has-audio': hasAudio(k) }" @click="playWord(k)">
-            <strong>{{ k }}</strong>
-            <span>{{ v }}</span>
+        <li v-for="w in words" :class="{ 'has-audio': w.hasAudio }" @click="playWord(w)">
+            <strong>{{ w.original }}</strong>
+            <span>{{ w.translation }}</span>
         </li>
     </ul>
 </div>
 </template>
 
 <script>
-import allWords from '~/assets/langpacks/hebrew/hebrew2english.json'
-import audioList from '~/assets/langpacks/hebrew/audio-list.json'
+import allHebrewWords from '~/assets/langpacks/hebrew/hebrew2english.json'
+import hebrewAudioList from '~/assets/langpacks/hebrew/audio-list.json'
 
 const cleanFileName = fn => fn.replace('?', '')
+
+const hebrewWords = Object.keys(allHebrewWords).reduce(
+    (acc, original) => {
+        const translation = allHebrewWords[original]
+        const hasAudio = hebrewAudioList.includes(cleanFileName(original))
+        acc.push({ original, translation, hasAudio })
+        return acc
+    }, []
+)// .sort((a, b) => a.original === b.original ? 0 : a.original > b.original ? 1 : - 1)
+
+
+import mostFrequentThaiWords from '~/assets/langpacks/thai/words/most_frequent.json'
+import thai2english from '~/assets/langpacks/thai/words/dicts/thai2english.json'
+import thaiAudioList from '~/assets/langpacks/thai/audio/words.json'
+
+
+const thaiWords = mostFrequentThaiWords.map(w => ({
+    original: w,
+    translation: thai2english[w] || '',
+    hasAudio: thaiAudioList.includes(cleanFileName(w))
+}))
 
 export default {
     data () {
@@ -30,40 +51,47 @@ export default {
         }
     },
     computed: {
-        audioList () {
-            return audioList
+        language () {
+            return this.$route.params.language
         },
         allWords () {
-            return allWords
+            switch (this.language) {
+                case 'hebrew':
+                    return hebrewWords
+                case 'thai':
+                    return thaiWords
+                default:
+                    return []
+            }
         },
         words () {
             if (!this.searchToken) {
                 return this.allWords
             } else {
-                return Object.keys(this.allWords).filter(w =>
-                    w.includes(this.searchToken) || this.allWords[w].includes(this.searchToken)
-                ).reduce((acc, k) => (acc[k] = this.allWords[k], acc), {})
+                return this.allWords.filter(w =>
+                    w.original.includes(this.searchToken) ||
+                    w.translation.includes(this.searchToken)
+                )
             }
         },
         totalCount () {
-            return Object.keys(this.allWords).length
+            return this.allWords.length
         },
         filteredCount () {
-            return Object.keys(this.words).length
+            return this.words.length
         },
     },
     methods: {
-        hasAudio (w) {
-            w = cleanFileName(w)
-            return this.audioList.includes(w)
-        },
         playWord (w) {
-            w = cleanFileName(w)
-            if (!this.hasAudio(w)) {
+            if (!w.hasAudio) {
                 return
             }
             this.$refs.letterAudio.pause()
-            this.$refs.letterAudio.src = `/langpacks/hebrew/audio/${w}.mp3`
+            if (this.language === 'hebrew') {
+                this.$refs.letterAudio.src = `/langpacks/${this.language}/audio/${cleanFileName(w.original)}.mp3`
+            } else if (this.language === 'thai') {
+                this.$refs.letterAudio.src = `/langpacks/${this.language}/audio/words/${cleanFileName(w.original)}.mp3`
+            }
             this.$refs.letterAudio.play()
         }
     }
