@@ -160,15 +160,19 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@require '~/assets/styles/mixins.styl'
+
 @font-face {
   font-family: "Motek";
   src: url("~assets/langpacks/hebrew/fonts/Motek.woff") format("woff");
 }
 
 button
-    position absolute
-    left 1em
-    top 1em
+    position fixed
+    right 0
+    top 0
+    inverse-colors()
+    padding .5em 1em
 
 .keyboard.hebrew.coursive
     font-family Motek

@@ -1,11 +1,11 @@
 <template>
-<nav>
-    <nuxt-link to="/" exact>Home</nuxt-link>
-    <span>
+<div class="navigation">
+    <nuxt-link to="/" exact>Thaiper</nuxt-link>
+    <nav>
         <span>Languages:</span>
         <nuxt-link v-for="l in languages" :to="`/${l}/`">{{ l }}</nuxt-link>
-    </span>
-</nav>
+    </nav>
+</div>
 </template>
 
 <script>
@@ -38,8 +38,17 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-a
-    display inline-block
-    margin-right 1em
-    text-transform capitalize
+.navigation
+    display flex
+    flex-direction row
+    justify-content space-between
+    align-items center
+
+    span
+        opacity 0.5
+
+    a
+        display inline-block
+        margin-right .5em
+        text-transform capitalize
 </style>
