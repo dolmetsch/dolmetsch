@@ -34,3 +34,6 @@
 [submodule "assets/langpacks/khmer"]
 	path = assets/langpacks/khmer
 	url = git@github.com:dolmetsch/langpacks-khmer
+[submodule "components/dl-recorder"]
+	path = components/dl-recorder
+	url = git@github.com:dolmetsch/components-dl-recorder.git

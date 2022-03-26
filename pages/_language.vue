@@ -5,6 +5,7 @@
         <nav>
             <nuxt-link v-if="hasKeyboard" :to="`/${$route.params.language}/keyboard/`">keyboard</nuxt-link>
             <nuxt-link v-if="hasWordList" :to="`/${$route.params.language}/word-list/`">dictionary</nuxt-link>
+            <!-- <nuxt-link v-if="hasWordList" :to="`/${$route.params.language}/recorder/`">recorder</nuxt-link> -->
         </nav>
     </aside>
     <nuxt-child/>
