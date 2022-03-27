@@ -14,4 +14,10 @@ export default {
         linkActiveClass: 'active',
         linkExactActiveClass: 'active-exact',
     },
+    modules: [
+        '@nuxtjs/proxy'
+    ],
+    proxy: [
+        'http://localhost:5000/api',
+    ]
 }

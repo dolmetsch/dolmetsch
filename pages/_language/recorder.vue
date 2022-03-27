@@ -1,5 +1,5 @@
 <template>
-    <dl-recorder class="recorder-page" :words="words"/>
+    <dl-recorder class="recorder-page" :words="words" :language="language"/>
 </template>
 
 <script>
