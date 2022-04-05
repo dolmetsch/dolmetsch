@@ -40,3 +40,6 @@
 [submodule "uploader"]
 	path = uploader
 	url = git@github.com:dolmetsch/tools-uploader
+[submodule "assets/langpacks/indonesian"]
+	path = assets/langpacks/indonesian
+	url = git@github.com:dolmetsch/langpacks-indonesian.git
