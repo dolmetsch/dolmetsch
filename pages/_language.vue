@@ -6,6 +6,7 @@
             <nuxt-link v-if="hasKeyboard" :to="`/${$route.params.language}/keyboard/`">keyboard</nuxt-link>
             <nuxt-link v-if="hasWordList" :to="`/${$route.params.language}/word-list/`">dictionary</nuxt-link>
             <!-- <nuxt-link v-if="hasWordList" :to="`/${$route.params.language}/recorder/`">recorder</nuxt-link> -->
+            <nuxt-link v-if="hasReader" :to="`/${$route.params.language}/reader/`">reader</nuxt-link>
         </nav>
     </aside>
     <nuxt-child/>
@@ -19,7 +20,12 @@ export default {
             return this.$route.params.language
         },
         hasKeyboard () {
-            return true
+            return [
+                'hebrew',
+                'thai',
+                'georgian',
+                'armenian',
+            ].includes(this.language)
         },
         hasWordList () {
             return [
@@ -28,7 +34,12 @@ export default {
                 'georgian',
                 'armenian',
             ].includes(this.language)
-        }
+        },
+        hasReader () {
+            return [
+                'indonesian',
+            ].includes(this.language)
+        },
     },
     mounted () {
         document.documentElement.setAttribute('data-theme', this.language)

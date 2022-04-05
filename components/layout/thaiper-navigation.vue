@@ -31,6 +31,7 @@ export default {
                 // 'hindi',
                 // 'tamil',
                 // 'sinhala',
+                // 'indonesian',
             ]
         }
     }
